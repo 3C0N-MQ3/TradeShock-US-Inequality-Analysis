@@ -27,19 +27,19 @@ Using data from the 1990, 2000 Censuses and the 2007 3-year ACS (2006-2008), con
 1. **Average Wage**: 
 
 $$
-\text{log(average wage}_{r2007}\text{)} - \text{log(average wage}_{r2000}\text{)}
+\log(average \quad wage_{r2007}) - \log(average \quad wage_{r2000})
 $$
    
 2. **Unemployment Rate**: 
 
 $$
-\frac{\text{unemployment rate}_{r2007}}{\text{unemployment rate}_{r2000}}
+\frac{unemployment \quad rate_{r2007}}{unemployment \quad rate_{r2000}}
 $$
 
 3. **Labor Force Participation (LFP) Rate**: 
 
 $$
-\frac{\text{LFP rate}_{r2007}}{\text{LFP rate}_{r2000}}
+\frac{LFP \quad rate_{r2007}}{LFP \quad rate_{r2000}}
 $$
    
 These variables will be calculated for **working-age individuals** (and also for the period 1990-2000 for comparison).

@@ -25,19 +25,22 @@ This project uses data from two primary sources:
 Using data from the 1990, 2000 Censuses and the 2007 3-year ACS (2006-2008), construct the following variables at the **commuting zone (CZ)** level, composition-adjusted:
 
 1. **Average Wage**: 
-   $$
-   \text{log(average wage}_{r2007}\text{)} - \text{log(average wage}_{r2000}\text{)}
-   $$
+
+$$
+\text{log(average wage}_{r2007}\text{)} - \text{log(average wage}_{r2000}\text{)}
+$$
    
 2. **Unemployment Rate**: 
-   $$
-   \frac{\text{unemployment rate}_{r2007}}{\text{unemployment rate}_{r2000}}
-   $$
+
+$$
+\frac{\text{unemployment rate}_{r2007}}{\text{unemployment rate}_{r2000}}
+$$
 
 3. **Labor Force Participation (LFP) Rate**: 
-   $$
-   \frac{\text{LFP rate}_{r2007}}{\text{LFP rate}_{r2000}}
-   $$
+
+$$
+\frac{\text{LFP rate}_{r2007}}{\text{LFP rate}_{r2000}}
+$$
    
 These variables will be calculated for **working-age individuals** (and also for the period 1990-2000 for comparison).
 
@@ -54,17 +57,15 @@ Once the variables are constructed, we will use Two-Stage Least Squares (2SLS) t
 
 To ensure that all collaborators use the same environment, you can create the conda environment using the `environment.yml` file provided in the repository.
 
-### Create the Conda Environment
-
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/Trade-Labor-Market-China-Shock.git
+git clone https://github.com/3C0N-MQ3/TradeShock-US-Inequality-Analysis.git
 ```
 2. Navigate to the project directory:
 
 ```bash
-cd Trade-Labor-Market-China-Shock
+cd TradeShock-US-Inequality-Analysis
 ```
 3. Create the conda environment using the provided environment.yml file:
 
@@ -83,7 +84,8 @@ If there are changes or updates to the environment (e.g., new packages are added
 
 ```bash
 conda env update --file environment.yml --prune
-The --prune option removes any dependencies that are no longer needed, ensuring your environment stays clean and up-to-date.
 ```
+
+The `--prune` option removes any dependencies that are no longer needed, ensuring your environment stays clean and up-to-date.
 
 This will allow anyone working on the project to replicate the environment easily and ensure consistency across different setups.

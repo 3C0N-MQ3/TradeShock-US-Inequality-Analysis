@@ -18,113 +18,33 @@
 - This version: April 24, 2022.
 """
 # %%
-import os
-import json
 import warnings
+import os
+import sqlite3
 import pandas as pd
 import numpy as np
 
-from io import StringIO
 from toolz import pipe
-from econtools import group_id
+from io import StringIO
 from linearmodels.iv import IV2SLS, compare
 
 from src.agg import WtSum, WtMean
-from src.write_variable_labels import write_variable_labels
+from src.create_dataset import create_base_df
 
 # %%
-mainp = os.path.join(".", "data")
+mainp = os.path.join("data")
 
 # %%
-write_variable_labels()
+
+df = create_base_df(mainp)
 
 # %%
-# Keep those aged 16-64 and not in group quarters:
-df = pipe(
-    os.path.join(mainp, "usa_00137.dta"),
-    lambda x: pd.read_stata(x, convert_categoricals=False),
-    lambda x: x[(x.age >= 16) & (x.age <= 64) & (x.gq <= 2)],
-)
-
-# %% [markdown]
-"""
-Define (128) groups over which we CA: 
-
-- gender (2)
-- US born (2)
-- age bin (4)
-- education bin (4)
-- race bin (2)
-"""
+conn = sqlite3.connect(os.path.join(mainp, "dataset.db"))
 
 # %%
-df["male"] = np.where(df.sex == 1, 1, 0)
-df["native"] = np.where(df.bpl <= 99, 1, 0)
-df["agebin"] = pd.cut(df.age, bins=[15, 27, 39, 51, 64], labels=False)
-df["educbin"] = pd.cut(df.educ, bins=[-1, 5, 6, 9, 11], labels=False)
-df["white"] = np.where(df.race == 1, 1, 0)
-df["college"] = np.where((df.educ > 9) & (df.educ <= 11), 1, 0)
-
-# %%
-df.drop(columns=["age", "educ", "race", "bpl", "sex"], inplace=True)
-
-# %%
-group_cols = ["male", "native", "agebin", "educbin", "white"]
-
-df = group_id(df, cols=group_cols, merge=True, name="groups")
-
-# %%
-# Get geography to cz level
-df.loc[(df.statefip == 22) & (df.puma == 77777), "puma"] = 1801  # Katrina data issue
-df["PUMA"] = df["statefip"].astype(str).str.zfill(2) + df["puma"].astype(str).str.zfill(
-    4
-)
-df["PUMA"] = df["PUMA"].astype("int")
-
-# %%
-df1990 = df[df.year == 1990].merge(
-    pd.read_stata(os.path.join(mainp, "cw_puma1990_czone.dta")),
-    left_on="PUMA",
-    right_on="puma1990",
-)
-df2000 = df[df.year != 1990].merge(
-    pd.read_stata(os.path.join(mainp, "cw_puma2000_czone.dta")),
-    left_on="PUMA",
-    right_on="puma2000",
-)
-df = pd.concat([df1990, df2000])
-df["perwt"] = df["perwt"] * df["afactor"]
-del df1990
-del df2000
-
-# %% [markdown]
-# #### Aggregate to cz x group x year level
-
-# %%
-# Employment status:
-df["emp"] = np.where(df.empstat == 1, 1, 0)
-df["unemp"] = np.where(df.empstat == 2, 1, 0)
-df["nilf"] = np.where(df.empstat == 3, 1, 0)
-# Manufacturing employment:
-df["manuf"] = np.where((df.emp == 1) & (df.ind1990 >= 100) & (df.ind1990 < 400), 1, 0)
-df["nonmanuf"] = np.where(
-    (df.emp == 1) & ((df.ind1990 < 100) | (df.ind1990 >= 400)), 1, 0
-)
-# Filling in weeks worked for 2008 ACS (using midpoint):
-df.loc[df.wkswork2 == 1, "wkswork1"] = 7
-df.loc[df.wkswork2 == 2, "wkswork1"] = 20
-df.loc[df.wkswork2 == 3, "wkswork1"] = 33
-df.loc[df.wkswork2 == 4, "wkswork1"] = 43.5
-df.loc[df.wkswork2 == 5, "wkswork1"] = 48.5
-df.loc[df.wkswork2 == 6, "wkswork1"] = 51
-# Log weekly wage:
-df["lnwkwage"] = np.log(df.incwage / df.wkswork1)
-df.loc[df["lnwkwage"] == -np.inf, "lnwkwage"] = np.nan
-# Hours:
-df["hours"] = df["uhrswork"] * df["wkswork1"]
-
-df.drop(columns=["empstat", "wkswork2", "incwage"], inplace=True)
-
+chunks = pd.read_sql_query("SELECT * FROM census", conn, chunksize=10_000)
+df = pd.concat(chunks, ignore_index=True)
+conn.close()
 # %%
 wmean_cols = ["lnwkwage"]  # columns to take weighted mean
 sum_cols = ["manuf", "nonmanuf", "emp", "unemp", "nilf", "hours"]  # columns to sum

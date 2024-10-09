@@ -21,4 +21,4 @@ def write_variable_labels():
     # Save the DataFrame to CSV
     var.to_csv(os.path.join(mainp, "variable_labels.csv"), index=False)
 
-    print("Variable labels have been saved to 'variable_labels.csv'")
+    print("--> Variable labels have been saved to 'variable_labels.csv'")

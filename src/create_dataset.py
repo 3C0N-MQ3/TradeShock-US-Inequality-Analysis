@@ -23,6 +23,10 @@ def create_base_df(mainp):
     mainp = os.path.join("data")
     print(f"--> Path to data: {mainp}")
 
+    group_cols = ["male", "native", "agebin", "educbin", "white"]
+    print("--> Group columns defined.")
+    print(group_cols)
+
     write_variable_labels()
 
     # Keep those aged 16-64 and not in group quarters:
@@ -48,8 +52,6 @@ def create_base_df(mainp):
 
     df.drop(columns=["age", "educ", "race", "bpl", "sex"], inplace=True)
     print("--> Groups created.")
-
-    group_cols = ["male", "native", "agebin", "educbin", "white"]
 
     df = group_id(df, cols=group_cols, merge=True, name="groups")
     print("--> Groups id created.")
@@ -121,12 +123,12 @@ def create_base_df(mainp):
 
     df.drop(columns=["empstat", "wkswork2", "incwage"], inplace=True)
 
-    return df
+    return df, group_cols
 
 
 def create_sql(mainp):
 
-    df = create_base_df()
+    df, _ = create_base_df()
 
     # Creating the sql database.
     conn = sqlite3.connect(os.path.join(mainp, "dataset.db"))

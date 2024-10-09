@@ -12,7 +12,10 @@ def WtSum(
     outw=False,
     mask=None,
 ):
-    """Weighted sum"""
+    """Weighted sum
+
+    If outw=True, return the weight column as well.
+    """
 
     out = df[[*cols, weight_col, *by_cols]].copy()
     out[[*cols, weight_col]] = out[[*cols, weight_col]].astype(

@@ -2,6 +2,10 @@
 
 This repository contains materials for the project analyzing the impact of a significant international trade shock, specifically the “China shock,” on labor-market outcomes and regional inequality in the United States. The primary focus is to replicate a well-known study and adjust labor-market outcomes based on the composition of various factors.
 
+## Reference paper 
+Autor, Dorn, Hanson, 2013, "The China Syndrome: Local Labor Market Effects of Import Competition in the US", AER, 103(6): 2121-2168.
+(https://www.nber.org/system/files/working_papers/w18054/w18054.pdf)
+
 ## Project Overview
 
 - **Research Question**: What is the impact of the China trade shock on inequality across U.S. regions?

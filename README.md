@@ -6,6 +6,9 @@ This repository contains materials for the project analyzing the impact of a sig
 Autor, Dorn, Hanson, 2013, "The China Syndrome: Local Labor Market Effects of Import Competition in the US", AER, 103(6): 2121-2168.
 (https://www.nber.org/system/files/working_papers/w18054/w18054.pdf)
 
+Online Data and Theory Appendix:
+(https://ddorn.net/papers/Autor-Dorn-Hanson-ChinaSyndrome-Appendix.pdf)
+
 ## Project Overview
 
 - **Research Question**: What is the impact of the China trade shock on inequality across U.S. regions?

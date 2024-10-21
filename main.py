@@ -28,80 +28,12 @@ from io import StringIO
 from linearmodels.iv import IV2SLS, compare
 
 from src.agg import WtSum, WtMean
-from src.create_dataset import create_base_df
+from src.create_dataset import create_base_igt
 
 # %%
 mainp = os.path.join("data")
 
-# %%
-# The groups are defined inside the `create_base_df` function.
-df, group_cols = create_base_df(mainp)
-
-# %% [markdown]
-"""
-Recall the definition of average log wages.  
-
-Defining $\mathcal{I}_{gy}$ as the set of people in group $g$ in year $y$, the average log wage is defined as:
-
-$$
-W_{gy} = \frac{1}{P_{gy}} \sum_{i \in \mathcal{I}_{gy}} p_{i} w_{i}
-$$
-
-Where:
-
-- $w_{i}$ is the log wage of individual $i \in \mathcal{I}_{gy}$.
-- $p_{i}$ is the weight of individual $i \in \mathcal{I}_{gy}$.
-- $P_{gy} = \sum_{i \in \mathcal{I}_{gy}} p_{i}$ is the total population of group $g$ in year $y$.  
-
-
-This is the operation that the `WtMean` function performs, using `by_cols` to define the different $\mathcal{I}_{gy}$ groups and `perwt` as the weights $p_{i}$.
-"""
-# %% [markdown]
-"""
-For the Weighted Sum operation, we have:
-
-$$
-W^*_{gy} = \sum_{i \in \mathcal{I}_{gy}} p_{i} w_{i}
-$$
-
-This is the operation that the `WtSum` function performs.
-"""
-
-# %%
-# columns to take weighted mean
-wmean_cols = ["lnwkwage"]
-
-# columns to sum
-sum_cols = ["manuf", "nonmanuf", "emp", "unemp", "nilf", "hours"]
-
-# columns to group by (equivalent to the `gy` index in the equations.)
-by_cols = ["czone", "year", "groups", *group_cols, "college"]
-# %%
-
-df_cgy = pd.concat(
-    [
-        WtMean(df, cols=wmean_cols, weight_col="perwt", by_cols=by_cols),
-        WtSum(df, cols=sum_cols, weight_col="perwt", by_cols=by_cols, outw=True),
-    ],
-    axis=1,
-)
-df_cgy.rename(columns={"perwt": "pop"}, inplace=True)
-
-# %%
-
-
-for c in ["manuf", "nonmanuf", "unemp", "nilf"]:
-    df_cgy["{}_share".format(c)] = df_cgy[c] / df_cgy["pop"]
-
-for c in [*sum_cols, "pop"]:
-    df_cgy["ln{}".format(c)] = np.log(df_cgy[c])
-    df_cgy.loc[df_cgy["ln{}".format(c)] == -np.inf, "ln{}".format(c)] = np.nan
-
-del df
-df_cgy = df_cgy.reset_index().set_index(["czone", "year", "groups"])
-
-# %%
-df_cgy.head()
+df_cgy, group_cols = create_base_igt(mainp)
 
 # %% [markdown]
 # #### Aggregate to cz x year level
@@ -123,6 +55,7 @@ df_cgy.head()
 #
 #
 # Note that $\sum_g \bar{\theta}_{ig}=1$.
+# Note that $\mathcal{G}$.
 
 # %%
 # Create weights

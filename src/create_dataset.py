@@ -15,9 +15,31 @@ from toolz import pipe
 from econtools import group_id
 
 from src.write_variable_labels import write_variable_labels
+from src.agg import WtSum, WtMean
 
 
 def create_base_df(mainp):
+    """
+    Creates a base DataFrame from census data and processes it into grouped categories.
+
+    This function loads census data, processes demographic and employment-related variables,
+    creates grouped categories based on gender, birthplace, age, education, and race,
+    and merges the data with corresponding geographic information. It then creates employment
+    indicators and calculates additional variables such as log weekly wages and total hours worked.
+
+    Args:
+        mainp (str): The main path where data is stored. This path is adjusted to point to the
+                     'data' directory of the project.
+
+    Returns:
+        tuple:
+            pd.DataFrame: The processed DataFrame with demographic, employment, and wage variables.
+            list: A list of group column names used for further analysis.
+
+    Raises:
+        FileNotFoundError: If the required data files are not found in the specified path.
+    """
+
     mainp = os.path.join("data")
     # This path will work relatively to the root of the project.
     mainp = os.path.join("data")
@@ -127,6 +149,21 @@ def create_base_df(mainp):
 
 
 def create_sql(mainp):
+    """
+    Creates an SQLite database from the processed census DataFrame.
+
+    This function processes census data using `create_base_df`, then stores the resulting
+    DataFrame in an SQLite database. The database is created or overwritten at the specified
+    path, and the DataFrame is saved as a table named 'census'.
+
+    Args:
+        mainp (str): The main path where the SQLite database will be saved. The function will
+                     create a database named 'dataset.db' in this path.
+
+    Raises:
+        Exception: If there is an issue writing the DataFrame to the SQLite database,
+                   the error is printed.
+    """
 
     df, _ = create_base_df()
 
@@ -138,6 +175,102 @@ def create_sql(mainp):
         print("DataFrame successfully written to the database.")
     except Exception as e:
         print(f"An error occurred: {e}")
+
+
+def create_base_igt(mainp):
+    """
+    Creates a grouped DataFrame with weighted means and sums for various employment and wage variables.
+
+    This function processes a DataFrame to calculate the weighted mean of log wages (`lnwkwage`)
+    and the weighted sums for various employment-related indicators, such as manufacturing and
+    non-manufacturing employment, unemployment, and hours worked. The data is grouped by geographic
+    zones, year, demographic groups, and other relevant factors, producing a DataFrame for further
+    analysis.
+
+    Args:
+        mainp (str): The main path where the data is stored. The function assumes the existence
+                     of the necessary data files and directories.
+
+    Returns:
+        pd.DataFrame: A DataFrame grouped by zone, year, and demographic group, containing weighted
+                      means and sums of key variables, as well as calculated population shares and
+                      their log transformations.
+
+    Calculations:
+        - Weighted mean of log wages (`lnwkwage`) using the `WtMean` function.
+        - Weighted sum of employment status indicators (`manuf`, `nonmanuf`, `emp`, `unemp`, `nilf`,
+          `hours`) using the `WtSum` function.
+        - Population shares for manufacturing, non-manufacturing, unemployment, and NILF statuses.
+        - Log transformations of summed columns (`manuf`, `nonmanuf`, `emp`, `unemp`, `nilf`, `hours`,
+          `pop`).
+
+    Example:
+        >>> df_cgy = create_base_igt("/path/to/project")
+        >>> print(df_cgy.head())
+    """
+    df, group_cols = create_base_df(mainp)
+    """
+    Recall the definition of average log wages.  
+
+    Defining $\mathcal{I}_{gy}$ as the set of people in group $g$ in year $y$, the average log wage is defined as:
+
+    $$
+    W_{gy} = \frac{1}{P_{gy}} \sum_{i \in \mathcal{I}_{gy}} p_{i} w_{i}
+    $$
+
+    Where:
+
+    - $w_{i}$ is the log wage of individual $i \in \mathcal{I}_{gy}$.
+    - $p_{i}$ is the weight of individual $i \in \mathcal{I}_{gy}$.
+    - $P_{gy} = \sum_{i \in \mathcal{I}_{gy}} p_{i}$ is the total population of group $g$ in year $y$.  
+
+
+    This is the operation that the `WtMean` function performs, using `by_cols` to define the different $\mathcal{I}_{gy}$ groups and `perwt` as the weights $p_{i}$.
+    
+    For the Weighted Sum operation, we have:
+
+    $$
+    W^*_{gy} = \sum_{i \in \mathcal{I}_{gy}} p_{i} w_{i}
+    $$
+
+    This is the operation that the `WtSum` function performs.
+    """
+
+    # columns to take weighted mean
+    wmean_cols = ["lnwkwage"]
+
+    # columns to sum
+    sum_cols = ["manuf", "nonmanuf", "emp", "unemp", "nilf", "hours"]
+
+    # columns to group by (equivalent to the `gy` index in the equations.)
+    by_cols = ["czone", "year", "groups", *group_cols, "college"]
+
+    df_cgy = pd.concat(
+        [
+            WtMean(df, cols=wmean_cols, weight_col="perwt", by_cols=by_cols),
+            WtSum(df, cols=sum_cols, weight_col="perwt", by_cols=by_cols, outw=True),
+        ],
+        axis=1,
+    )
+    df_cgy.rename(columns={"perwt": "pop"}, inplace=True)
+
+    print(f"--> Dataset grouped by: {by_cols}")
+    print(f"--> {wmean_cols} aggregated using weighted mean.")
+    print(f"--> {sum_cols} aggregated using weighted sum.")
+
+    for c in ["manuf", "nonmanuf", "unemp", "nilf"]:
+        df_cgy["{}_share".format(c)] = df_cgy[c] / df_cgy["pop"]
+
+    for c in [*sum_cols, "pop"]:
+        df_cgy["ln{}".format(c)] = np.log(df_cgy[c])
+        df_cgy.loc[df_cgy["ln{}".format(c)] == -np.inf, "ln{}".format(c)] = np.nan
+
+    df_cgy = df_cgy.reset_index().set_index(["czone", "year", "groups"])
+
+    print(f"--> Dataset shape: {df_cgy.shape}")
+    print(f"--> Dataset columns: {df_cgy.columns}")
+
+    return df_cgy, group_cols
 
 
 # %%

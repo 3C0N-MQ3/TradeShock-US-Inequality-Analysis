@@ -1,0 +1,60 @@
+\documentclass{beamer}
+
+\usepackage{lipsum}
+% Set a background template for all slides:
+% Load theme:
+\usetheme{ucla}
+
+\usebackgroundtemplate{%
+\tikz[overlay,remember picture] \node[opacity=0.1, at=(current page.south east),anchor=south east]{\includegraphics[height=0.4\paperheight]{bruin_bear.png}};
+}
+
+% Set title page values:
+\title{Impact of the China Trade Shock on U.S. Regional Inequality: A Replication Study}
+\date{Fall 2024}
+\author{
+    Marlon Morales, Mauricio Vargas, Nikolas Papadatos, Anshruta Thakur
+}
+\location{}
+
+% Turn on slide numbers:
+\showSlideNumber{}
+
+\begin{document}
+
+% Title frame:
+\insertTitleSlide
+
+\begin{frame}{Overview}
+    \tableofcontents
+\end{frame}
+
+% Section 1: Title and Objectives
+\section{Abstract}
+    \include{sections/abstract.tex}
+
+% Section 2: Introduction 
+\section{Introduction}
+    \include{sections/introduction.tex}
+
+% Section 3: Data and Methodology
+\section{Data and Methodology}
+    \subsection{Data Sources and Transformations}
+        \include{sections/data.tex}
+    \subsection{2SLS Estimation Strategy}
+        \include{sections/methodology.tex}
+
+% Section 4: Main Results: Replicated Tables
+\section{Main Results}
+    \include{sections/results.tex}
+    \subsection{Comparison with the Original Study}
+        \include{sections/comparison.tex}
+
+% Section 5: Discussion and Conclusions
+\section{Discussion and Conclusions}
+    \include{sections/conclusions.tex}
+
+% Insert a last slide to hide backups
+\insertLastSlide
+
+\end{document}

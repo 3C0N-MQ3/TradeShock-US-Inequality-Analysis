@@ -1,20 +1,123 @@
-\begin{frame}{Table 3 Results}
+\begin{frame}
+    \frametitle{Impact of Chinese Imports on Manufacturing Employment Proportion}
+    \begin{table}[h!]
+        \centering
+        \begin{adjustbox}{max width=\textwidth}
+            \begin{tabular}{c c c >{\raggedright\arraybackslash}p{8cm}}
+                \toprule
+                \multicolumn{4}{c}{\textbf{Coefficient ($\Delta$ Imports from China to US per Worker)}} \\
+                \midrule
+                \textbf{Model} & \textbf{Original} & \textbf{Adjusted} & \textbf{Description} \\
+                \midrule
+                1 & -0.746 & -0.787 & Demographic and labor force measures added to the first difference model for the period 1990–2007. \\
+                2 & -0.610 & -0.658 & Control for the share of manufacturing in a CZ's start-of-period employment. \\
+                3 & -0.538 & -0.590 & Geographic dummies for the nine Census divisions. \\
+                4 & -0.508 & -0.550 & Additional controls for education, foreign-born population, and working-age women employment. \\
+                5 & -0.562 & -0.605 & Control by \% manufacturing employment and variables capturing occupational susceptibility to technology and offshoring. \\
+                6 & -0.506 & -0.640 & Fully augmented model. \\
+                \bottomrule
+            \end{tabular}
+        \end{adjustbox}
+        \caption{Comparison of Regression Coefficients and Model Descriptions}
+        \label{tab:comparison_coeff}
+    \end{table}
+
+    The above table displays outcomes from the original paper and those obtained when composition adjusting while we progressively add controls.
+\end{frame}
+%% ------------------------------------------------------------------------
+\begin{frame}
+    \frametitle{Impact of Chinese Imports on Manufacturing Employment Proportion}
+    \framesubtitle{Interpretation}
     \begin{itemize}
-        \item Explanation of the results in Table 3.
-        \item Observed effects of the "China shock" on labor markets.
+        \item Composition Adjusting leaves impact of share of workers largely unchanged.
+        \item In the model with all variables (6), the $\beta = -0.640$ means that an exogenous increase of \$1,000.00 in exposure per worker leads to a predicted decrease of 0.64 percentage points in manufacturing employment per working-age population.
+        \item The coefficients of the models subjected to Composition Adjustment reveal a beta with a higher magnitude, indicating a larger effectthanthe original estimate.
     \end{itemize}
 \end{frame}
+%% ------------------------------------------------------------------------
+\begin{frame}
+    \frametitle{Population and Employment Effects in Local Labor Markets}
+    
+    \begin{table}[h!]
+        \centering
+        \begin{adjustbox}{max width=\textwidth}
+            \begin{tabular}{l c c c c c}
+                \toprule
+                \textbf{PANEL 1} & \textbf{100 $\times$ log change in pop count} & \textbf{Mfg emp} & \textbf{Non-mfg emp} & \textbf{Unemp} & \textbf{NILF} \\
+                \midrule
+                \textbf{Original} & ($\Delta$ imports from China to US)/worker & -4.2305*** & -0.2741 & 4.9213*** & 2.0583* \\
+                \textbf{Adjusted} & ($\Delta$ imports from China to US)/worker & -4.8311*** & -0.0127 & 5.8837*** & 3.2958*** \\
+                \bottomrule
+            \end{tabular}
+        \end{adjustbox}
+        \caption{Imports from China and Employment Status of Working-Age Population within CZs, 1990–2007}
+        \label{tab:panel_5}
+    \end{table}
 
-\begin{frame}{Panel A Results}
+    This model examines the impact of import shocks from China on the local labor markets using 2SLS. The table presents the log changes in the number of non-elderly adults in four distinct categories:
+        
     \begin{itemize}
-        \item Interpretation of the results in Panel A.
-        \item Comparison with Table 3.
+        \item Manufacturing employment
+        \item Non-manufacturing employment
+        \item Unemployment
+        \item Labor force nonparticipation
     \end{itemize}
 \end{frame}
+%% ------------------------------------------------------------------------
+\begin{frame}
+    \framesubtitle{Interpretation}
+    
+    \frametitle{Population and Employment Effects in Local Labor Markets}
+        The coefficients tell us the changes in employment in 100 log points for every \$1,000 increase in import exposure per worker.
 
-\begin{frame}{Table 6 Results}
-    \begin{itemize}
-        \item Presentation of the effects of the "China shock" on regional inequality.
-    \end{itemize}
+        \begin{itemize}
+            \item Composition adjustment exacerbate the impact over: Manufacturing Employment, Unemployment, Labor-force non-participation.
+            \item Non-Manufacturing Employment coefficient is statistically insignificant with and without composition adjustment.
+        \end{itemize}
+   
+        In conclusion, composition adjusting seems to raise the impact of China shock on local labor market. Import shocks from China are associated with job losses in manufacturing but do not necessarily lead to significant job gains in other sectors or labor force participation.
 \end{frame}
+%% ------------------------------------------------------------------------
+\begin{frame}
+    \frametitle{Wage Effects in Local Labor Markets by Gender}
 
+        \begin{table}[h!]
+            \centering
+            \begin{adjustbox}{max width=\textwidth}
+                \begin{tabular}{l c c c c c c}
+                    \toprule
+                    \multicolumn{7}{l}{Dependent variable: Ten-year equivalent change in average log weekly wage (in log pts)} \\
+                    \multicolumn{7}{l}{Regressor coefficient: ($\Delta$ imports from China to US) / worker} \\
+                    \midrule
+                    & \multicolumn{2}{c}{\textbf{All Workers}} & \multicolumn{2}{c}{\textbf{Males}} & \multicolumn{2}{c}{\textbf{Females}} \\
+                    \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+                    & \textbf{Original} & \textbf{Adjusted} & \textbf{Original} & \textbf{Adjusted} & \textbf{Original} & \textbf{Adjusted} \\
+                    \midrule
+                    \textbf{All education levels} & -0.759*** & -1.222*** & -0.892*** & -1.204*** & -0.614*** & -1.258*** \\
+                    \textbf{College education} & -0.757*** & -0.903*** & -0.991*** & -1.129*** & -0.525*** & -0.598*** \\
+                    \textbf{No college education} & -0.814*** & -1.182*** & -0.703*** & -1.104*** & -1.116*** & -1.304*** \\
+                    \bottomrule
+                \end{tabular}
+            \end{adjustbox}
+            \caption{Ten-year equivalent change in average log weekly wage (in log pts) due to imports from China}
+            \label{tab:panel_6}
+        \end{table}
+
+    \end{frame}
+%% ------------------------------------------------------------------------
+\begin{frame}
+    \frametitle{Wage Effects in Local Labor Markets by Gender}
+    \framesubtitle{Interpretation}
+
+        After Composition Adjustments, A \$1,000 increase in import exposure results in:
+        
+        \begin{itemize}
+            \item All Education Levels: Reduced mean weekly earnings by a larger amount, approximately -1.222 log points for all workers (similar across genders). This suggests that after accounting for compositional changes, the negative effect on earnings is more pronounced.
+            
+            \item College Education: The impact remains negative, with a coefficient of -0.903 log points. Workers still experience a reduction in weekly earnings after composition adjustment, though the effect is slightly smaller.
+        
+            \item Non College Education: The effect is even more pronounced, with a coefficient of -1.1817 log points for all workers. This implies that the impact on earnings is substantial, particularly among those with lower education levels.
+        \end{itemize}
+        
+        Through composition adjustment, it is found that the impact of the China shock on wages is greater than in the original findings.
+\end{frame}

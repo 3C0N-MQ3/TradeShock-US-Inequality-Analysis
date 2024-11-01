@@ -67,17 +67,28 @@ df_w = (
     .unstack(level=[1, 2], fill_value=0.0)
     .stack(level=[1, 2])
 )
-
 df_w["weight_cgt"] = df_w["hours"] / df_w.groupby(["czone", "year"])["hours"].transform(
     "sum"
 )
 df_w["weight_cg"] = df_w.groupby(["czone", "groups"])["weight_cgt"].transform("mean")
 
 df_cgy = pd.concat(
-    [df_cgy, df_w[["weight_cg"]].rename(columns={"weight_cg": "weight"})], axis=1
+    [
+        df_cgy,
+        df_w[["weight_cgt", "weight_cg"]].rename(
+            columns={"weight_cg": "weight", "weight_cgt": "weight_non_adjusted"}
+        ),
+    ],
+    axis=1,
 )
 
 del df_w
+
+# %%
+# import sqlite3 as sql
+# conn = sql.connect('data/china_syndrome.db')
+# df_cgy.to_sql('data_by_cz_groups_years',conn, if_exists='replace', index=True)
+# conn.close()
 
 
 # %%

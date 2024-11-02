@@ -186,7 +186,6 @@ df_cy = df_cy.reset_index().pivot_table(index="czone", columns="year")
 for c in cols:
     df_cy["D{}".format(c), 1990] = df_cy[c, 2000] - df_cy[c, 1990]
     df_cy["D{}".format(c), 2000] = (df_cy[c, 2008] - df_cy[c, 2000]) * (10 / 7)
-
 # Reshape back to long format:
 df_cy = df_cy.stack().drop(columns=cols)
 
@@ -250,11 +249,13 @@ df_cy.head()
 
 # %%
 # Original non-CA data:
-df_NCA = pd.read_stata(mainp / "files_provided/workfile_china.dta")
+df_NCA = pd.read_stata("data/workfile_china.dta")
 
 # CA data:
 CA_cols = [v for k, v in ADHnames.items()]
 other_cols = df_NCA.columns.difference(CA_cols)
+
+# %%
 df_CA = pd.merge(
     df_cy,
     df_NCA[other_cols],
@@ -495,7 +496,19 @@ keep = [
     "l_task_outsource",
     "l_sh_routine33",
 ]
+pd.options.display.float_format = "{:.3f}".format
 CompareDF(Table3(df_CA)[0], keep=keep)
+# %%
+# Elimina caracteres no numéricos y convierte a NaN cualquier valor que no se pueda convertir
+tmp = tmp.replace(r"[^0-9.-]", "", regex=True)
+tmp = tmp.apply(pd.to_numeric, errors="coerce")
+
+# Redondea a 3 decimales
+tmp = tmp.round(3)
+
+# %%
+tmp
+
 
 # %% [markdown]
 # **Interpretation**. In Column 1 we are estimating

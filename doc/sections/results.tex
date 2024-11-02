@@ -1,33 +1,97 @@
 \begin{frame}
-    \frametitle{Impact of Chinese Imports on Manufacturing Employment Proportion}
-    \begin{table}[h!]
+    \frametitle{Results}
+    \framesubtitle{Impact of Chinese Imports on Manufacturing Employment Proportion (Table 3)}
+    
+    \begin{table}[ht]
         \centering
-        \begin{adjustbox}{max width=\textwidth}
-            \begin{tabular}{c c c >{\raggedright\arraybackslash}p{8cm}}
+        \caption{Imports from China and Change of Manufacturing Employment in CZs, 1990--2007: 2SLS Estimates\footnote{Equivalent to \emph{Table 3} in the original paper, with additional columns for composition-adjusted models.}}
+        \label{tab:table_3}
+        \resizebox{1\textwidth}{!}{
+            \begin{tabular}{lcccccccccccc}
                 \toprule
-                \multicolumn{4}{c}{\textbf{Coefficient ($\Delta$ Imports from China to US per Worker)}} \\
+                & \multicolumn{12}{c}{I. 1990--2007 stacked first differences} \\
+                \cmidrule(lr){2-13}
+                & \multicolumn{2}{c}{(1)} & \multicolumn{2}{c}{(2)} & \multicolumn{2}{c}{(3)} & \multicolumn{2}{c}{(4)} & \multicolumn{2}{c}{(5)} & \multicolumn{2}{c}{(6)} \\
+                \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11} \cmidrule(lr){12-13}
+                & Original    & CA         & Original    & CA         & Original    & CA         & Original    & CA         & Original    & CA         & Original    & CA         \\
                 \midrule
-                \textbf{Model} & \textbf{Original} & \textbf{Adjusted} & \textbf{Description} \\
+$(\Delta \text{ imports from China to US})/\text{worker}$   
+                & -0.746***   & -0.787***  & -0.610***   & -0.658***  & -0.538***   & -0.590***  & -0.508***   & -0.550***  & -0.562***   & -0.605***  & -0.596***   & -0.640***  \\
+                & (0.068)     & (0.085)    & (0.094)     & (0.118)    & (0.091)     & (0.091)    & (0.081)     & (0.100)    & (0.096)     & (0.117)    & (0.099)     & (0.120)    \\
+Percentage of employment in manufacturing$_{-1}$    
+                &             &            & -0.035      & -0.034     & -0.052***   & -0.050***  & -0.061***   & -0.071***  & -0.056***   & -0.057***  & -0.040***   & -0.048***  \\
+                &             &            & (0.022)     & (0.021)    & (0.020)     & (0.019)    & (0.017)     & (0.016)    & (0.016)     & (0.015)    & (0.013)     & (0.013)    \\
+Percentage of college-educated population$_{-1}$    
+                &             &            &             &            &            &             & -0.008      & -0.033*    &             &            & 0.013       & -0.008     \\
+                &             &            &             &            &            &             & (0.016)     & (0.018)    &             &            & (0.012)     & (0.013)    \\
+Percentage of foreign-born population$_{-1}$        
+                &             &            &             &            &            &             & -0.007      & -0.006     &             &            & 0.030***    & 0.036***   \\
+                &             &            &             &            &            &             & (0.008)     & (0.008)    &             &            & (0.011)     & (0.013)    \\
+Percentage of employment among women$_{-1}$         
+                &             &            &             &            &            &             & -0.054**    & -0.027     &             &            & -0.006      & 0.028      \\
+                &             &            &             &            &            &             & (0.025)     & (0.029)    &             &            & (0.024)     & (0.030)    \\
+Percentage of employment in routine occupations$_{-1}$   
+                &             &            &             &            &             &            &             &            & -0.230***   & 0.113      & -0.245***   & -0.214     \\
+                &             &            &             &            &             &            &             &            & (0.063)     & (0.309)    & (0.064)     & (0.247)    \\
+Average offshorability index of occupations$_{-1}$  
+                &             &            &             &            &             &            &             &            & 0.244       & -0.225***  & -0.059      & -0.247***  \\
+                &             &            &             &            &             &            &             &            & (0.252)     & (0.072)    & (0.237)     & (0.072)    \\
+Census division dummies                               
+                & No          & No         & No          & No         & Yes         & Yes        & Yes         & Yes        & Yes         & Yes        & Yes         & Yes        \\
+                \multicolumn{13}{l}{II. 2SLS first stage estimates} \\
                 \midrule
-                1 & -0.746 & -0.787 & Demographic and labor force measures added to the first difference model for the period 1990–2007. \\
-                2 & -0.610 & -0.658 & Control for the share of manufacturing in a CZ's start-of-period employment. \\
-                3 & -0.538 & -0.590 & Geographic dummies for the nine Census divisions. \\
-                4 & -0.508 & -0.550 & Additional controls for education, foreign-born population, and working-age women employment. \\
-                5 & -0.562 & -0.605 & Control by \% manufacturing employment and variables capturing occupational susceptibility to technology and offshoring. \\
-                6 & -0.506 & -0.640 & Fully augmented model. \\
+$(\Delta \text{ imports from China to OTH})/\text{worker}$  
+                & 0.792***    & 0.792***   & 0.664***    & 0.664***   & 0.652***    & 0.652***   & 0.635***    & 0.635***   & 0.638***    & 0.638***   & 0.631***    & 0.631***   \\
+                & (0.079)     & (0.079)    & (0.086)     & (0.088)    & (0.090)     & (0.092)    & (0.090)     & (0.092)    & (0.087)     & (0.089)    & (0.087)     & (0.090)    \\
+$R^2$          
+                & 0.54        & 0.54       & 0.57        & 0.57       & 0.58        & 0.58       & 0.58        & 0.58       & 0.58        & 0.58       & 0.58        & 0.58       \\
                 \bottomrule
             \end{tabular}
-        \end{adjustbox}
-        \caption{Comparison of Regression Coefficients and Model Descriptions}
-        \label{tab:comparison_coeff}
+        }
+        \vspace{0.2cm}
+        
+        \begin{minipage}{\linewidth}
+            \tiny
+            \textit{Notes:} $N = 1,444$ (722 commuting zones $\times$ 2 time periods). All regressions include a constant and a dummy for the 2000--2007 period. First stage estimates in panel II also include the control variables that are indicated in the corresponding columns of panel I. Routine occupations are defined such that they account for 1/3 of US employment in 1980. The offshorability index variable is standardized to mean of 0 and standard deviation of 10 in 1980. Robust standard errors in parentheses are clustered on state. Models are weighted by start of period CZ share of national population. \\
+            ***Significant at the 1 percent level. \\
+            **Significant at the 5 percent level. \\
+            *Significant at the 10 percent level.
+        \end{minipage}
     \end{table}
-
-    The above table displays outcomes from the original paper and those obtained when composition adjusting while we progressively add controls.
 \end{frame}
+
+%% ------------------------------------------------------------------------
+%\begin{frame}
+    %\frametitle{Results}
+    %\framesubtitle{Impact of Chinese Imports on Manufacturing Employment Proportion (Summary)}
+    %\begin{table}[h!]
+        %\centering
+        %\begin{adjustbox}{max width=\textwidth}
+            %\begin{tabular}{c c c >{\raggedright\arraybackslash}p{8cm}}
+                %\toprule
+                %\multicolumn{4}{c}{\textbf{Coefficient ($\Delta$ Imports from China to US per Worker)}} \\
+                %\midrule
+                %\textbf{Model} & \textbf{Original} & \textbf{Adjusted} & \textbf{Description} \\
+                %\midrule
+                %1 & -0.746 & -0.787 & Demographic and labor force measures added to the first difference model for the period 1990–2007. \\
+                %2 & -0.610 & -0.658 & Control for the share of manufacturing in a CZ's start-of-period employment. \\
+                %3 & -0.538 & -0.590 & Geographic dummies for the nine Census divisions. \\
+                %4 & -0.508 & -0.550 & Additional controls for education, foreign-born population, and working-age women employment. \\
+                %5 & -0.562 & -0.605 & Control by \% manufacturing employment and variables capturing occupational susceptibility to technology and offshoring. \\
+                %6 & -0.506 & -0.640 & Fully augmented model. \\
+                %\bottomrule
+            %\end{tabular}
+        %\end{adjustbox}
+        %\caption{Comparison of Regression Coefficients and Model Descriptions}
+        %\label{tab:comparison_coeff}
+    %\end{table}
+
+    %The above table displays a summary of the outcomes from the original paper and those obtained when composition-adjusting while progressively adding controls.
+%\end{frame}
 %% ------------------------------------------------------------------------
 \begin{frame}
-    \frametitle{Impact of Chinese Imports on Manufacturing Employment Proportion}
-    \framesubtitle{Interpretation}
+    \frametitle{Results}
+    \framesubtitle{Impact of Chinese Imports on Manufacturing Employment Proportion (Interpretation)}
     \begin{itemize}
         \item Composition Adjusting leaves impact of share of workers largely unchanged.
         \item In the model with all variables (6), the $\beta = -0.640$ means that an exogenous increase of \$1,000.00 in exposure per worker leads to a predicted decrease of 0.64 percentage points in manufacturing employment per working-age population.
@@ -36,33 +100,44 @@
 \end{frame}
 %% ------------------------------------------------------------------------
 \begin{frame}
-    \frametitle{Population and Employment Effects in Local Labor Markets}
-    
-    \begin{table}[h!]
+    \frametitle{Imports from China and Employment Status of Working-Age Population}
+    \begin{table}[ht]
         \centering
-        \begin{adjustbox}{max width=\textwidth}
-            \begin{tabular}{l c c c c c}
+        \caption{Imports from China and Employment Status of Working-Age Population within CZs, 1990--2007: 2SLS Estimates\footnote{Equivalent to \emph{Table 5} in the original paper, with additional columns for composition-adjusted models. The full table is available in the appendix as Table \ref{tab:table_5}.}}
+        \label{tab:table_5_panel_a}
+        \resizebox{1\textwidth}{!}{
+            \begin{tabular}{lcccccccccc}
                 \toprule
-                \textbf{PANEL 1} & \textbf{100 $\times$ log change in pop count} & \textbf{Mfg emp} & \textbf{Non-mfg emp} & \textbf{Unemp} & \textbf{NILF} \\
+                \multicolumn{9}{c}{Dependent variables: Ten-year equivalent changes in log population counts and population shares by employment status}&&\\
+                \cmidrule(lr){1-11}
+                & \multicolumn{2}{c}{Mfg emp} & \multicolumn{2}{c}{Non-mfg emp} & \multicolumn{2}{c}{Unemp} & \multicolumn{2}{c}{NILF} \\
+                & \multicolumn{2}{c}{(1)}     & \multicolumn{2}{c}{(2)}         & \multicolumn{2}{c}{(3)}   & \multicolumn{2}{c}{(4)}  \\
+                \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9}
+                & Original & CA  & Original & CA  & Original & CA  & Original & CA \\
                 \midrule
-                \textbf{Original} & ($\Delta$ imports from China to US)/worker & -4.2305*** & -0.2741 & 4.9213*** & 2.0583* \\
-                \textbf{Adjusted} & ($\Delta$ imports from China to US)/worker & -4.8311*** & -0.0127 & 5.8837*** & 3.2958*** \\
+                \multicolumn{9}{l}{\textit{Panel A. 100 $\times$ log change in population counts}} \\
+$(\Delta \text{ imports from China to US})/\text{worker}$ 
+                & -4.231*** & -4.831*** & -0.274     & -0.013     & 4.921*** & 5.884*** & 2.058*   & 3.296*   \\
+                & (1.047)   & (1.215)   & (0.651)    & (0.667)    & (1.128)  & (1.138)  & (1.080)  & (1.103)  \\
                 \bottomrule
             \end{tabular}
-        \end{adjustbox}
-        \caption{Imports from China and Employment Status of Working-Age Population within CZs, 1990–2007}
-        \label{tab:panel_5}
+        }
+        \vspace{0.2cm}
+        
+        \begin{minipage}{\linewidth}
+            \tiny
+            \textit{Notes:} $N = 1,444$ (722 CZs $\times$ two time periods). All statistics are based on working age individuals (age 16 to 64). The effect of import exposure on the overall employment/population ratio can be computed as the sum of the coefficients for manufacturing and nonmanufacturing employment. All regressions include the full vector of control variables from column 6 of Table \ref{tab:table_3}. Robust standard errors in parentheses are clustered on state. Models are weighted by start of period CZ share of national population. \\
+            ***Significant at the 1 percent level. \\
+            **Significant at the 5 percent level. \\
+            *Significant at the 10 percent level.
+        \end{minipage}
     \end{table}
 
-    This model examines the impact of import shocks from China on the local labor markets using 2SLS. The table presents the log changes in the number of non-elderly adults in four distinct categories:
-        
-    \begin{itemize}
-        \item Manufacturing employment
-        \item Non-manufacturing employment
-        \item Unemployment
-        \item Labor force nonparticipation
-    \end{itemize}
 \end{frame}
+
+%% ------------------------------------------------------------------------
+
+
 %% ------------------------------------------------------------------------
 \begin{frame}
     \framesubtitle{Interpretation}
@@ -78,35 +153,87 @@
         In conclusion, composition adjusting seems to raise the impact of China shock on local labor market. Import shocks from China are associated with job losses in manufacturing but do not necessarily lead to significant job gains in other sectors or labor force participation.
 \end{frame}
 %% ------------------------------------------------------------------------
-\begin{frame}
-    \frametitle{Wage Effects in Local Labor Markets by Gender}
+%\begin{frame}
+    %\frametitle{Wage Effects in Local Labor Markets by Gender}
 
-        \begin{table}[h!]
-            \centering
-            \begin{adjustbox}{max width=\textwidth}
-                \begin{tabular}{l c c c c c c}
-                    \toprule
-                    \multicolumn{7}{l}{Dependent variable: Ten-year equivalent change in average log weekly wage (in log pts)} \\
-                    \multicolumn{7}{l}{Regressor coefficient: ($\Delta$ imports from China to US) / worker} \\
-                    \midrule
-                    & \multicolumn{2}{c}{\textbf{All Workers}} & \multicolumn{2}{c}{\textbf{Males}} & \multicolumn{2}{c}{\textbf{Females}} \\
-                    \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
-                    & \textbf{Original} & \textbf{Adjusted} & \textbf{Original} & \textbf{Adjusted} & \textbf{Original} & \textbf{Adjusted} \\
-                    \midrule
-                    \textbf{All education levels} & -0.759*** & -1.222*** & -0.892*** & -1.204*** & -0.614*** & -1.258*** \\
-                    \textbf{College education} & -0.757*** & -0.903*** & -0.991*** & -1.129*** & -0.525*** & -0.598*** \\
-                    \textbf{No college education} & -0.814*** & -1.182*** & -0.703*** & -1.104*** & -1.116*** & -1.304*** \\
-                    \bottomrule
-                \end{tabular}
-            \end{adjustbox}
-            \caption{Ten-year equivalent change in average log weekly wage (in log pts) due to imports from China}
-            \label{tab:panel_6}
-        \end{table}
+        %\begin{table}[h!]
+            %\centering
+            %\begin{adjustbox}{max width=\textwidth}
+                %\begin{tabular}{l c c c c c c}
+                    %\toprule
+                    %\multicolumn{7}{l}{Dependent variable: Ten-year equivalent change in average log weekly wage (in log pts)} \\
+                    %\multicolumn{7}{l}{Regressor coefficient: ($\Delta$ imports from China to US) / worker} \\
+                    %\midrule
+                    %& \multicolumn{2}{c}{\textbf{All Workers}} & \multicolumn{2}{c}{\textbf{Males}} & \multicolumn{2}{c}{\textbf{Females}} \\
+                    %\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+                    %& \textbf{Original} & \textbf{Adjusted} & \textbf{Original} & \textbf{Adjusted} & \textbf{Original} & \textbf{Adjusted} \\
+                    %\midrule
+                    %\textbf{All education levels} & -0.759*** & -1.222*** & -0.892*** & -1.204*** & -0.614*** & -1.258*** \\
+                    %\textbf{College education} & -0.757*** & -0.903*** & -0.991*** & -1.129*** & -0.525*** & -0.598*** \\
+                    %\textbf{No college education} & -0.814*** & -1.182*** & -0.703*** & -1.104*** & -1.116*** & -1.304*** \\
+                    %\bottomrule
+                %\end{tabular}
+            %\end{adjustbox}
+            %\caption{Ten-year equivalent change in average log weekly wage (in log pts) due to imports from China}
+        %\end{table}
 
-    \end{frame}
+    %\end{frame}
 %% ------------------------------------------------------------------------
 \begin{frame}
-    \frametitle{Wage Effects in Local Labor Markets by Gender}
+    \frametitle{Wage Effects in Local Labor Markets by Gender and Edcation}
+    \begin{table}[ht]
+        \centering
+        \caption{Imports from China and Wage Changes within CZs, 1990--2007: 2SLS Estimates\footnote{Equivalent to \emph{Table 6} in the original paper, with additional columns for composition-adjusted models.}}
+        \label{tab:china_imports_wage_changes}
+        \resizebox{0.9\textwidth}{!}{
+            \begin{tabular}{lcccccccc}
+                \toprule
+                \multicolumn{7}{c}{Dependent variable: Ten-year equivalent change in average log weekly wage (in log pts)}&&\\
+                \cmidrule(lr){2-9}
+                & \multicolumn{2}{c}{All workers} & \multicolumn{2}{c}{Males} & \multicolumn{2}{c}{Females} \\
+                & \multicolumn{2}{c}{(1)}         & \multicolumn{2}{c}{(2)}   & \multicolumn{2}{c}{(3)}     \\
+                \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+                & Original & CA  & Original & CA  & Original & CA \\
+                \midrule
+                \multicolumn{9}{l}{\textit{Panel A. All education levels}} \\
+$(\Delta \text{ imports from China to US})/\text{worker}$ 
+                & -0.759*** & -1.222*** & -0.892*** & -1.203*** & -0.614*** & -1.258*** \\
+                & (0.253)   & (0.290)   & (0.294)   & (0.329)   & (0.237)   & (0.285)   \\
+$R^2$          
+                & 0.56      & 0.56      & 0.44      & 0.43      & 0.69      & 0.68      \\
+                \midrule
+                \multicolumn{9}{l}{\textit{Panel B. College education}} \\
+$(\Delta \text{ imports from China to US})/\text{worker}$ 
+                & -0.757**  & -0.903*** & -0.991*** & -1.129*** & -0.525*   & -0.598*   \\
+                & (0.308)   & (0.334)   & (0.374)   & (0.372)   & (0.279)   & (0.349)   \\
+$R^2$          
+                & 0.52      & 0.31      & 0.39      & 0.18      & 0.63      & 0.40      \\
+                \midrule
+                \multicolumn{9}{l}{\textit{Panel C. No college education}} \\
+$(\Delta \text{ imports from China to US})/\text{worker}$ 
+                & -0.814*** & -1.182*** & -0.703*** & -1.104*** & -1.116*** & -1.304*** \\
+                & (0.236)   & (0.266)   & (0.250)   & (0.312)   & (0.278)   & (0.271)   \\
+$R^2$          
+                & 0.52      & 0.60      & 0.45      & 0.48      & 0.59      & 0.70      \\
+                \bottomrule
+            \end{tabular}
+        }
+        \vspace{0.2cm}
+        
+        \begin{minipage}{\linewidth}
+            \tiny
+            \textit{Notes:} $N = 1,444$ (722 CZs $\times$ two time periods). All regressions include the full vector of control variables from column 6 of Table \ref{tab:table_3}. Robust standard errors in parentheses are clustered on state. Models are weighted by start of period CZ share of national population. \\
+            ***Significant at the 1 percent level. \\
+            **Significant at the 5 percent level. \\
+            *Significant at the 10 percent level.
+        \end{minipage}
+        \label{tab:table_6}
+    \end{table}
+\end{frame}
+
+%% ------------------------------------------------------------------------
+\begin{frame}
+    \frametitle{Wage Effects in Local Labor Markets by Gender and Education}
     \framesubtitle{Interpretation}
 
         After Composition Adjustments, A \$1,000 increase in import exposure results in:

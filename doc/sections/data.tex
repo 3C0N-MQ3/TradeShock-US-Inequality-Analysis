@@ -1,11 +1,33 @@
-\begin{frame}{Data Sources}
+\begin{frame}
+    \frametitle{Data Description}
+    \framesubtitle{Sources}
+    The two main data sources used in this study are:
+    \begin{enumerate}
+        \item Dependent variables from the 1990, 2000 Censuses + 2007 3 year ACS (2006-2008)
+        \begin{itemize}
+            \item \url{https://usa.ipums.org/usa/}
+        \end{itemize}
+        \item \textbf{Data II:} Independent variables from “China Shock” paper
+        \begin{itemize}
+            \item \textbf{Author:} David H. Autor, David Dorn, and Gordon H. Hanson, 2013, “The China Syndrome: Local Labor Market Effects of Import Competition in the United States”
+            \item \textbf{Dorn Data:} \url{http://www.ddorn.net/data.html}
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+%% ------------------------------------------------------------------------ 
+\begin{frame}
+    \frametitle{Data Description}
+    \framesubtitle{Transformations}
     \begin{itemize}
-        \item \textbf{UN Comtrade Database}: For analyzing trade flows.
-        \item \textbf{County Business Patterns Data}: Employment structure within Commuting Zones (CZs).
-        \item \textbf{Census Integrated Public Use Micro Samples (IPUMS)}: Detailed demographics of employment, and wage data by education, age, and gender.
-        \item \textbf{American Community Survey (ACS)}: Data from the Census, providing recent demographic.
-        \item \textbf{Bureau of Economic Analysis}: Data on transfer payments to CZ residents.
-        \item \textbf{Social Security Administration}: Federal and state transfer payments to individuals.
-        \item \textbf{Data from other high-income countries}: Comparative trade flow data from a group of eight high-income countries.
+        \item \textit{Step 1:} Ten-year equivalent changes (btw 1990-2000 and btw 2000-2007) are constructed at the commuting zone (CZ) level, composition-adjusted for working-age individuals (also the same for 1990 - 2000) for
+        \begin{itemize}
+            \item average wage, e.g., log(average wage\textsubscript{2007}) log(average wage\textsubscript{2000})
+            \item unemployment rate, e.g., unemployment rate\textsubscript{2007}/unemployment rate\textsubscript{2000}
+            \item labor force participation (LFP) rate, e.g., LFP rate\textsubscript{2007}/LFP rate\textsubscript{2000}
+        \end{itemize}
+        \item \textit{Step 2:} 2SLS is used to estimate the impact of the “China shock” on the CZ-level outcomes above, with progressive controls added for additional CZ-level variables as described in the paper.
     \end{itemize}
 \end{frame}
+
+
+

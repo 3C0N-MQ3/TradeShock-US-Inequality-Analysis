@@ -1,9 +1,9 @@
 \begin{frame}
     \frametitle{Methodology}
-    The paper examines how changes in import exposure across industries affect outcomes at the commuting
-zone level; specifically, unemployment rate, wage and income levels, and labor force participation.
+    \framesubtitle{Main Model}
+    The paper explores how changes in industry-level import exposure affect labor outcomes at the commuting zone level, specifically analyzing unemployment rates, wages, income levels, and labor force participation.
 
-    The main estimation is an Instrumental Variables 2 Stage Least Squares:
+    The primary estimation employs an Instrumental Variables Two-Stage Least Squares model\footnote{Clustered by area using FIP code.}:
 
     \begin{equation}
         \Delta L_{it}^{m} = \gamma_t + \beta_1 \Delta IPW_{it}^u + \Vec{X}_{it}'\Vec{\beta}_2 + \epsilon_{it}
@@ -13,34 +13,59 @@ zone level; specifically, unemployment rate, wage and income levels, and labor f
     Where:
 
     \begin{itemize}
-        \item $\Delta L_{it}^{m}$: Decadal change in the manufacturing employment share of the working-age population in commuting zone $i$.
+        \item $\Delta L_{it}^{m}$: 10-year change in the average share\footnote{Average calculated across groups based on gender, origin, age, education level, and ethnicity.} of manufacturing employment in the working-age population in commuting zone $i$ and year $t$.
         \item $\gamma_t$: Time fixed effect.
-        \item $\Delta IPW_{it}^u$: Observed change in US imports from China in industry $j$, weighted by the share of region $i$ in US employment in industry $j$.
-        \item $\Vec{X}_{it}'$: Includes a set of control variables specific to Commuting Zones.
+        \item $\Delta IPW_{it}^u$: Observed change in U.S. import exposure from China.
+        \item $\Vec{X}_{it}$: Set of control variables for demographic and labor force characteristics.
     \end{itemize}
 \end{frame}
+
 %% ------------------------------------------------------------------------
 \begin{frame}
-    \frametitle{Composition Adjustment}
-    Original regression coefficients may be influenced by labor mobility between regions; therefore, composition adjustments are applied to address this issue by aggregating the dependent variable data to the commuting zone level ($i$) by year ($t$) and group ($g$). For any left-hand side variable $Y$, the composition-adjusted measure is the sum over all groups, with each term as the product of a time-invariant weight and employment.
+    \frametitle{Methodology}
+    \framesubtitle{Composition-Adjusted Model}
+    The results of the main model are compared with those from a model in which labor outcomes are adjusted to control for changes in population composition. This alternative model is:
+
+    \begin{equation}
+        \Delta L_{it}^{CA, m} = \gamma_t + \beta_1 \Delta IPW_{it}^u + \Vec{X}_{it}'\Vec{\beta}_2 + \epsilon_{it}
+        \label{eq:alternative_panel_regression}
+    \end{equation}
+
+    Where:
+
+    \begin{itemize}
+        \item $\Delta L_{it}^{CA, m}$: 10-year change in the composition-adjusted average share of manufacturing employment within the working-age population in commuting zone $i$ for year $t$.
+    \end{itemize}
+\end{frame}
+
+
+%% ------------------------------------------------------------------------
+\begin{frame}
+    \frametitle{Methodology}
+    \framesubtitle{Composition Adjustment}
+    
+    Original regression coefficients may be influenced by labor mobility between regions; therefore, composition adjustments are applied while aggregating the dependent variable by groups $g$. 
+    
+    In the case of the share of manufacturing employment within the working-age population $L_{igt}$, the composition adjusted average is defined as:
 
     \begin{equation}
         L_{it}^{CA} = \sum_g \bar{\theta}_{ig} L_{igt}
         \label{eq:composition_adjustment}
     \end{equation}
 
-    The time-invariant weights $\bar{\theta}_{ig}$ are the average across periods of hours weights:
+    Where the time-invariant weights $\bar{\theta}_{ig}$ are defined as:
 
     \begin{equation}
-        \bar{\theta}_{ig} = \frac{1}{3} \left( \theta_{ig1990}+ \theta_{ig2000}+ \theta_{ig2008}\right)
+        \bar{\theta}_{ig} = \frac{\theta_{ig1990}+ \theta_{ig2000}+ \theta_{ig2008}}{3} 
         \label{eq:time_invariant_weight}
     \end{equation}
     
     and 
     \begin{equation}
-        \theta_{igt} = hours_{igt} \Big/ \left( \sum_g hours_{igt} \right).
+        \theta_{igt} = \dfrac{hours_{igt}}{\sum_g hours_{igt}}.
         \label{eq:weight_per_group}
     \end{equation}
 
-    Note that $\sum_g \bar{\theta}_{ig}=1$.
+    %%Note that $\sum_g \bar{\theta}_{ig}=1$.
+    Where $hours_{igt}$ denotes the number of weekly hours worked by group $g$ in commuting zone $i$ at time $t$.
 \end{frame}

@@ -93,15 +93,15 @@ $R^2$
     \frametitle{Results}
     \framesubtitle{Impact of Chinese Imports on Manufacturing Employment Proportion (Interpretation)}
     \begin{itemize}
-        \item Composition Adjusting leaves impact of share of workers largely unchanged.
-        \item In the model with all variables (6), the $\beta = -0.640$ means that an exogenous increase of \$1,000.00 in exposure per worker leads to a predicted decrease of 0.64 percentage points in manufacturing employment per working-age population.
-        \item The coefficients of the models subjected to Composition Adjustment reveal a beta with a higher magnitude, indicating a larger effectthanthe original estimate.
+        \item Composition-Adjusted estimates are consistently, albeit marginally, more negative than the original.
+        \item In the model with all variables (6), the composition-adjusted $\beta = -0.640$ means that an exogenous increase of \$1,000.00 in per-worker exposure to Chinese imports leads to a predicted decrease of 0.64 percentage points in manufacturing employment per working-age population.
+        \item The greater magnitude of the composition-adjusted estimates tells us that, had the composition of each CZ's population stayed fixed across time (aggregate to 128 sub-groups), exposure to exogenous Chinese import shocks would have resulted in a higher decrease in the share of working-age population employed in manufacturing.
     \end{itemize}
 \end{frame}
 %% ------------------------------------------------------------------------
 \begin{frame}
-    \frametitle{Imports from China and Employment Status of Working-Age Population}
-    \begin{table}[ht]
+    \frametitle{Import Shocks Effects on Employment Status}
+        \begin{table}[ht]
         \centering
         \caption{Imports from China and Employment Status of Working-Age Population within CZs, 1990--2007: 2SLS Estimates\footnote{Equivalent to \emph{Table 5} in the original paper, with additional columns for composition-adjusted models. The full table is available in the appendix as Table \ref{tab:table_5}.}}
         \label{tab:table_5_panel_a}
@@ -132,7 +132,14 @@ $(\Delta \text{ imports from China to US})/\text{worker}$
             *Significant at the 10 percent level.
         \end{minipage}
     \end{table}
-
+    The coefficients in this table represent the expected log change caused by Chinese import shocks in the number of working-age individuals in four categories of employment within CZs: 
+        
+    \begin{itemize}
+        \item Manufacturing employment
+        \item Non-manufacturing employment
+        \item Unemployment
+        \item Labor force non-participation
+    \end{itemize}
 \end{frame}
 
 %% ------------------------------------------------------------------------
@@ -142,15 +149,16 @@ $(\Delta \text{ imports from China to US})/\text{worker}$
 \begin{frame}
     \framesubtitle{Interpretation}
     
-    \frametitle{Population and Employment Effects in Local Labor Markets}
-        The coefficients tell us the changes in employment in 100 log points for every \$1,000 increase in import exposure per worker.
+    \frametitle{Import Shocks Effects on Employment Status}
+    The coefficients should be interpreted as the changes in the number of individuals per employment status in log points for every \$1,000 increase in import exposure per worker.
+    E.g., in the original model, a \$1,000 per worker increase in import exposure reduces the number of workers in manufacturing employment by 4.2\% (vs. the 4.8\% of the composition-adjusted model).
 
-        \begin{itemize}
-            \item Composition adjustment exacerbate the impact over: Manufacturing Employment, Unemployment, Labor-force non-participation.
-            \item Non-Manufacturing Employment coefficient is statistically insignificant with and without composition adjustment.
-        \end{itemize}
-   
-        In conclusion, composition adjusting seems to raise the impact of China shock on local labor market. Import shocks from China are associated with job losses in manufacturing but do not necessarily lead to significant job gains in other sectors or labor force participation.
+    \begin{itemize}
+        \item When composition-adjusting all estimates become more negative, except for the coefficient on non-manifacturing employment.
+        \item Notably, the non-manufacturing employment coefficient is the only estimate to move closer to zero as a consequence of composition-adjusting. However, in both models this estimate remains statistically insignificant.
+    \end{itemize}
+
+    In conclusion, had the composition of each CZ stayed fixed through time we would have observed greater losses in manufacturing employment and greater hikes in unemployment and labor-force exits for same values of per-worker exposure to Chinese import shocks.
 \end{frame}
 %% ------------------------------------------------------------------------
 %\begin{frame}
@@ -180,7 +188,7 @@ $(\Delta \text{ imports from China to US})/\text{worker}$
     %\end{frame}
 %% ------------------------------------------------------------------------
 \begin{frame}
-    \frametitle{Wage Effects in Local Labor Markets by Gender and Edcation}
+    \frametitle{Impacts of Chinese Import Shocks on Wages by Gender and Edcation}
     \begin{table}[ht]
         \centering
         \caption{Imports from China and Wage Changes within CZs, 1990--2007: 2SLS Estimates\footnote{Equivalent to \emph{Table 6} in the original paper, with additional columns for composition-adjusted models.}}
@@ -236,15 +244,17 @@ $R^2$
     \frametitle{Wage Effects in Local Labor Markets by Gender and Education}
     \framesubtitle{Interpretation}
 
-        After Composition Adjustments, A \$1,000 increase in import exposure results in:
+    Composition-adjusting increases the magnitude of all coefficients, meaning that, had the population composition of CZs stayed fixed, we would have observed a greater decrease in wages regardless of gender and education level.
         
-        \begin{itemize}
-            \item All Education Levels: Reduced mean weekly earnings by a larger amount, approximately -1.222 log points for all workers (similar across genders). This suggests that after accounting for compositional changes, the negative effect on earnings is more pronounced.
-            
-            \item College Education: The impact remains negative, with a coefficient of -0.903 log points. Workers still experience a reduction in weekly earnings after composition adjustment, though the effect is slightly smaller.
+    E.g., a \$1,000 increase in per-worker import exposure is expected to result in a 0.991 log-point decrease in average weekly earnings for college educated males in the orginial model, compared to a 1.222 decrease for the same population sub-group in the composition-adjusted model.
+    
+    The rank order of coefficients is also mainted in the composition-adjusted model: 
+    \begin{itemize}
+        \item College-educated males are more negatively affected than those with no college education.
         
-            \item Non College Education: The effect is even more pronounced, with a coefficient of -1.1817 log points for all workers. This implies that the impact on earnings is substantial, particularly among those with lower education levels.
+        \item Females with no college education are more negatively affected than those who attended college.
+    
+        \item Considering all workers regardless of gender, those with no college education are more negatively affected than those who attended college.
         \end{itemize}
         
-        Through composition adjustment, it is found that the impact of the China shock on wages is greater than in the original findings.
 \end{frame}
